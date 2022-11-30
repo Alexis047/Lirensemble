@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar-custom {
+  background-color: #3C7768;
+}
+
+/* Couleurs possibles : rgba(175, 152, 205, 0.8);
+rgb(171, 90, 136, 0.4)
+#3C7768
+*/
