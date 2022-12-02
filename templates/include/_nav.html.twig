@@ -12,14 +12,14 @@
 
                 {% if not app.user %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Inscription</a>
+                        <a class="nav-link custom-color" href="{{ path('user_register') }}">Inscription</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Connexion</a>
+                        <a class="nav-link custom-color" href="#">Connexion</a>
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Déconnexion</a>
+                        <a class="custom-color" href="#">Déconnexion</a>
                     </li>
                 {% endif %}
 

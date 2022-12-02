@@ -8,6 +8,15 @@
   background-color: #3C7768;
 }
 
+.logo {
+  height: 70px;
+  width: 200px;
+}
+
+.custom-color {
+  color: #d6eada;
+}
+
 /* Couleurs possibles : rgba(175, 152, 205, 0.8);
 rgb(171, 90, 136, 0.4)
 #3C7768
