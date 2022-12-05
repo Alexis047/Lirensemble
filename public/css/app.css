@@ -6,6 +6,11 @@
 
 .navbar-custom {
   background-color: #3C7768;
+  color: #d6eada;
+}
+
+.navbar-custom .navbar-text {
+  color: #d6eada;
 }
 
 .logo {
@@ -13,9 +18,13 @@
   width: 200px;
 }
 
-.custom-color {
-  color: #d6eada;
+.custom-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(214, 234, 218)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
+
+.custom-toggler .navbar-toggler {
+  border-color: rgb(214, 234, 218);
+} 
 
 /* Couleurs possibles : rgba(175, 152, 205, 0.8);
 rgb(171, 90, 136, 0.4)

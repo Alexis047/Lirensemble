@@ -1,25 +1,25 @@
-<nav class="navbar navbar-expand-lg navbar-custom">
+<nav class="navbar navbar-expand-lg navbar-custom custom-toggler">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ path('default_home') }}"><img class="logo" src="{{ asset('img/logomodif.png') }}" alt="logo"></a>
-        <button class="navbar-toggler custom-color" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler navbar-text" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ path('default_home') }}">Accueil</a>
+                    <a class="nav-link active navbar-text" aria-current="page" href="{{ path('default_home') }}">Accueil</a>
                 </li>
 
                 {% if not app.user %}
                     <li class="nav-item">
-                        <a class="nav-link custom-color" href="{{ path('user_register') }}">Inscription</a>
+                        <a class="nav-link navbar-text" href="{{ path('user_register') }}">Inscription</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link custom-color" href="{{ path('app_login') }}">Connexion</a>
+                        <a class="nav-link navbar-text" href="{{ path('app_login') }}">Connexion</a>
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="custom-color" href="{{ path('app_logout') }}">Déconnexion</a>
+                        <a class="nav-link navbar-text" href="{{ path('app_logout') }}">Déconnexion</a>
                     </li>
                 {% endif %}
 
