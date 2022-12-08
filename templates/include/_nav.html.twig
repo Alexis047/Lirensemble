@@ -26,11 +26,11 @@
 {# Pour vérifier le rôle d'un user, vous DEVEZ utiliser la fonction Twig is_granted() #}
                 {% if is_granted('ROLE_ADMIN') %}
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle navbar-text" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Espace Admin
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="{{ path('show_dashboard') }}">Dashboard</a></li>
                             <li><a class="dropdown-item" href="#}">Gestion des produits</a></li>
                             <li><a class="dropdown-item" href="#">Gestion des membres</a></li>
                             <li><a class="dropdown-item" href="#">Gestion des commandes</a></li>
