@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon profil{% endblock %}
+
+{% block body %}
+
+	<h1 class="text-center my-3">Gestion des livres</h1>
+
+	{% include "include/_flashes.html.twig" %}
+
+	<div class="row">
+		<div class="col-6 mx-auto">
+			<a href="{{ path('add_livre') }}" class="d-block mx-auto col-4 btn btn-primary col-4">Ajouter un livre à ma liste de prêt <i class="fa fa-plus-circle"></i></a>
+		</div>
+	</div>
+
+{% endblock %}

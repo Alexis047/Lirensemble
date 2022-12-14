@@ -18,13 +18,13 @@ class Livres
     private ?string $titre = null;
 
     #[ORM\Column(length: 100)]
-    private ?string $Auteur = null;
+    private ?string $auteur = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $Resume = null;
+    private ?string $resume = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $Genre = null;
+    private ?string $genre = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
@@ -54,36 +54,36 @@ class Livres
 
     public function getAuteur(): ?string
     {
-        return $this->Auteur;
+        return $this->auteur;
     }
 
-    public function setAuteur(string $Auteur): self
+    public function setAuteur(string $auteur): self
     {
-        $this->Auteur = $Auteur;
+        $this->auteur = $auteur;
 
         return $this;
     }
 
     public function getResume(): ?string
     {
-        return $this->Resume;
+        return $this->resume;
     }
 
-    public function setResume(string $Resume): self
+    public function setResume(string $resume): self
     {
-        $this->Resume = $Resume;
+        $this->resume = $resume;
 
         return $this;
     }
 
     public function getGenre(): ?string
     {
-        return $this->Genre;
+        return $this->genre;
     }
 
-    public function setGenre(string $Genre): self
+    public function setGenre(string $genre): self
     {
-        $this->Genre = $Genre;
+        $this->genre = $genre;
 
         return $this;
     }

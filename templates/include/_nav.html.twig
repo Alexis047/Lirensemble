@@ -19,6 +19,9 @@
                     </li>
                 {% else %}
                     <li class="nav-item">
+                        <a class="nav-link navbar-text" href="{{ path('show_profile') }}">Mon profil</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link navbar-text" href="{{ path('app_logout') }}">Déconnexion</a>
                     </li>
                 {% endif %}
@@ -31,7 +34,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{{ path('show_dashboard') }}">Dashboard</a></li>
-                            <li><a class="dropdown-item" href="#}">Gestion des produits</a></li>
+                            <li><a class="dropdown-item" href="{{ path('show_livres') }}">Gestion des livres</a></li>
                             <li><a class="dropdown-item" href="#">Gestion des membres</a></li>
                             <li><a class="dropdown-item" href="#">Gestion des commandes</a></li>
                         </ul>
