@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir les archives
+{% endblock %}
+
+{% block body %}
+
+	<h1 class="text-center my-3 text-warning">Les Archives</h1>
+
+	<div class="row">
+		<div class="col-6 mx-auto">
+			{% include 'include/_flashes.html.twig' %}
+		</div>
+	</div>
+
+	<div class="row my-5 mx-auto">
+		<div class="col-4">
+			<a class="btn btn-sm btn-outline-dark" href="{{ path('show_dashboard') }}">
+				<i class="fa-solid fa-arrow-left"></i>
+				Retour au tableau de bord</a>
+		</div>
+	</div>
+
+	<div class="col-6">
+		<h2 class="text-center">Tous les utilisateurs archivés</h2>
+	</div>
+
+	<div class="row">
+		<div class="col-11 mx-auto">
+			<table class="table table-hover">
+				<thead class="table-dark">
+					<tr>
+						<th>#</th>
+						<th>Pseudo</th>
+						<th>Nom</th>
+						<th>Prénom</th>
+						<th>Email</th>
+						<th>Adresse</th>
+						<th>Ville</th>
+						<th>Code Postal</th>
+						<th>Inscrit le :</th>
+						<th>Bannir</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for membre in membres %}
+						<tr>
+							<td>{{ membre.id }}</td>
+							<td>{{ membre.pseudo }}</td>
+							<td>{{ membre.nom }}</td>
+							<td>{{ membre.prenom }}</td>
+							<td>{{ membre.email }}</td>
+							<td>{{ membre.adresse }}</td>
+							<td>{{ membre.ville }}</td>
+							<td>{{ membre.cp }}</td>
+							<td>{{ membre.createdAt | date('d/m/Y') }}</td>
+							<td class="text-center">
+								<a href="{{ path('restore_membre', {'id': membre.id}) }}" class="text-info" title="Restaurer le membre">
+									<i class="fa-solid fa-trash-arrow-up"></i>
+								</a>
+								<a href="{{ path('hard_delete_membre', {'id': membre.id}) }}" class="text-danger" title="Supprimer définitivement le membre" onclick="return confirm('Voulez-vous supprimer définitivement ce membre ?')">
+									<i class="fa-solid fa-times-circle"></i>
+								</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="11" class="bg-warning text-center">Aucun membre banni</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+{% endblock %}

@@ -30,6 +30,15 @@ class LivresRepository extends ServiceEntityRepository
         }
     }
 
+    public function add(Livres $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
     public function remove(Livres $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
@@ -37,6 +46,16 @@ class LivresRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findAllArchived(string $order = 'ASC')
+    {
+        return $this->createQueryBuilder('l')
+            ->where('l.deletedAt IS NOT NULL')
+            ->orderBy('l.deletedAt', $order)
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
 //    /**

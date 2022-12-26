@@ -35,6 +35,13 @@ class Livres
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $deletedAt = null;
 
+    #[ORM\ManyToOne(inversedBy: 'livres')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $proprietaire = null;
+
+    #[ORM\OneToOne(mappedBy: 'livre', cascade: ['persist', 'remove'])]
+    private ?Emprunt $emprunt = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +127,35 @@ class Livres
     public function setDeletedAt(?\DateTimeInterface $deletedAt): self
     {
         $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    public function getProprietaire(): ?User
+    {
+        return $this->proprietaire;
+    }
+
+    public function setProprietaire(?User $proprietaire): self
+    {
+        $this->proprietaire = $proprietaire;
+
+        return $this;
+    }
+
+    public function getEmprunt(): ?Emprunt
+    {
+        return $this->emprunt;
+    }
+
+    public function setEmprunt(Emprunt $emprunt): self
+    {
+        // set the owning side of the relation if necessary
+        if ($emprunt->getLivre() !== $this) {
+            $emprunt->setLivre($this);
+        }
+
+        $this->emprunt = $emprunt;
 
         return $this;
     }

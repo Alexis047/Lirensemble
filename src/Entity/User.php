@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -54,6 +56,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $deletedAt = null;
+
+    #[ORM\OneToMany(mappedBy: 'proprietaire', targetEntity: Livres::class, orphanRemoval: true)]
+    private Collection $livres;
+
+    #[ORM\OneToMany(mappedBy: 'emprunteur', targetEntity: Emprunt::class)]
+    private Collection $emprunts;
+
+    public function __construct()
+    {
+        $this->livres = new ArrayCollection();
+        $this->emprunts = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -229,6 +243,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setDeletedAt(?\DateTimeInterface $deletedAt): self
     {
         $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Livres>
+     */
+    public function getLivres(): Collection
+    {
+        return $this->livres;
+    }
+
+    public function addLivre(Livres $livre): self
+    {
+        if (!$this->livres->contains($livre)) {
+            $this->livres->add($livre);
+            $livre->setProprietaire($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLivre(Livres $livre): self
+    {
+        if ($this->livres->removeElement($livre)) {
+            // set the owning side to null (unless already changed)
+            if ($livre->getProprietaire() === $this) {
+                $livre->setProprietaire(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Emprunt>
+     */
+    public function getEmprunts(): Collection
+    {
+        return $this->emprunts;
+    }
+
+    public function addEmprunt(Emprunt $emprunt): self
+    {
+        if (!$this->emprunts->contains($emprunt)) {
+            $this->emprunts->add($emprunt);
+            $emprunt->setEmprunteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEmprunt(Emprunt $emprunt): self
+    {
+        if ($this->emprunts->removeElement($emprunt)) {
+            // set the owning side to null (unless already changed)
+            if ($emprunt->getEmprunteur() === $this) {
+                $emprunt->setEmprunteur(null);
+            }
+        }
 
         return $this;
     }

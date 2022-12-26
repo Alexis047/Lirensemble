@@ -1,9 +1,11 @@
-const inscription = document.querySelector(".inscription")
-const inscriptionShow = document.querySelector('.inscription-hidden')
+console.log("test");
+// const inscription = document.querySelector(".inscription")
+// const inscriptionShow = document.querySelector('.inscription-hidden')
 
-inscription.addEventListener('click', showInscription);
+// inscription.addEventListener('click', showInscription);
 
-function showInscription() {
-    inscriptionShow.style.display = "block";
-    console.log("exécution");
-}
+// function showInscription() {
+//     inscriptionShow.style.display = "block";
+//     console.log("exécution");
+// }
+

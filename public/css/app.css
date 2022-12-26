@@ -30,3 +30,9 @@
 rgb(171, 90, 136, 0.4)
 #3C7768
 */
+
+footer {
+  position: absolute;
+  bottom: 0;
+  
+}

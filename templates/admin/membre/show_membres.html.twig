@@ -1,0 +1,65 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Gérer les membres
+{% endblock %}
+
+{% block body %}
+
+	<h1 class="text-center my-3">Gestion des membres</h1>
+
+	{% include "include/_flashes.html.twig" %}
+
+	<div class="col-6 mx-auto">
+		<a href="{{ path('show_ban') }}" class="d-block mx-auto col-4 btn btn-primary">Membres bannis
+			<i class="fa fa-eye"></i>
+		</a>
+	</div>
+
+
+	<div class="row">
+		<div class="col-11 mx-auto">
+			<table class="table table-hover">
+				<thead class="table-dark">
+					<tr>
+						<th>#</th>
+						<th>Pseudo</th>
+						<th>Nom</th>
+						<th>Prénom</th>
+						<th>Email</th>
+						<th>Adresse</th>
+						<th>Ville</th>
+						<th>Code Postal</th>
+						<th>Inscrit le :</th>
+						<th>Bannir</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for membre in membres %}
+						<tr>
+							<td>{{ membre.id }}</td>
+							<td>{{ membre.pseudo }}</td>
+							<td>{{ membre.nom }}</td>
+							<td>{{ membre.prenom }}</td>
+							<td>{{ membre.email }}</td>
+							<td>{{ membre.adresse }}</td>
+							<td>{{ membre.ville }}</td>
+							<td>{{ membre.cp }}</td>
+							<td>{{ membre.createdAt | date('d/m/Y') }}</td>
+							<td>
+								<a href="{{ path('soft_delete_membre', {'id': membre.id}) }}" title="Bannir le membre" class="text-center align-middle text-danger" onclick="return confirm('Voulez-vous bannir cet utilisateur ?\n Si oui, il sera off-line.')">
+									<i class="fa-solid fa-trash"></i>
+								</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="11" class="bg-warning text-center">Aucun membre banni</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+{% endblock %}

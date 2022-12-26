@@ -33,6 +33,15 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         }
     }
 
+    public function add(User $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
     public function remove(User $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
@@ -54,6 +63,16 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $user->setPassword($newHashedPassword);
 
         $this->save($user, true);
+    }
+
+    public function findAllArchived(string $order = 'ASC')
+    {
+        return $this->createQueryBuilder('u')
+            ->where('u.deletedAt IS NOT NULL')
+            ->orderBy('u.deletedAt', $order)
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
 //    /**

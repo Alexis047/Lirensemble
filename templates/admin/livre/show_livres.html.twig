@@ -1,37 +1,60 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Gérer les livres{% endblock %}
+{% block title %}Gérer les livres
+{% endblock %}
 
 {% block body %}
 
-  <h1 class="text-center my-3">Gestion des livres</h1>
+	<h1 class="text-center my-3">Gestion des livres</h1>
 
-  {% include "include/_flashes.html.twig" %}
+	{% include "include/_flashes.html.twig" %}
 
-  {# <div class="row">
-    <div class="col-6 mx-auto">
-      <a href="" class="btn btn-primary col-4"></a>
-    </div>
-  </div> #}
+	<div class="col-6 mx-auto">
+		<a href="{{ path('show_trash') }}" class="d-block mx-auto col-4 btn btn-primary">Livres archivés
+			<i class="fa fa-eye"></i>
+		</a>
+	</div>
 
-  <div class="row">
-    <div class="col-11 mx-auto">
-      <table class="table table-hover">
-        <thead class="table-dark">
-          <tr>
-            <th>#</th>
-            <th>Titre</th>
-            <th>Auteur</th>
-            <th>Genre</th>
-            <th>Description</th>
-            <th>Ajouté le :</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-      </table>
-    </div>
-  </div>
-
+	<div class="row">
+		<div class="col-11 mx-auto">
+			<table class="table table-hover">
+				<thead class="table-dark">
+					<tr>
+						<th>#</th>
+						<th>Titre</th>
+						<th>Auteur</th>
+						<th>Genre</th>
+						<th>Résumé</th>
+						<th>Propriétaire</th>
+						<th>Ajouté le :</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for livre in livres %}
+						<tr>
+							<td>{{ livre.id }}</td>
+							<td>{{ livre.titre }}</td>
+							<td>{{ livre.auteur }}</td>
+							<td>{{ livre.genre }}</td>
+							<td>{{ livre.resume }}</td>
+							<td>{{ livre.proprietaire.pseudo }}</td>
+							<td>{{ livre.createdAt | date('d/m/Y') }}</td>
+							<td>
+								<a href="{{ path('soft_delete_livre', {'id': livre.id}) }}" title="Archiver le livre" class="text-center align-middle text-danger" onclick="return confirm('Voulez-vous archiver ce livre ?\n Si oui, il sera off-line.')">
+									<i class="fa-solid fa-trash"></i>
+								</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="11" class="bg-warning text-center">Aucun livre en prêt</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
 
 
 {% endblock %}
