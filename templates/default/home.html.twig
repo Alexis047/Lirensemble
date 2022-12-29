@@ -6,6 +6,8 @@
 
     <h1 class="text-center my-4">Bienvenue sur votre bibliothèque en ligne</h1>
 
+    {% include "include/_flashes.html.twig" %}
+
     <div class="row mb-3 d-flex justify-content-around">
 
         {%  for livre in livres %}
@@ -17,7 +19,7 @@
                         <h5 class="card-title">{{ livre.titre }}</h5>
                         <h6 class="card-title">{{ livre.genre }} | {{ livre.auteur }}</h6>
                         <p class="card-text">{{ livre.resume | length > 50 ? livre.resume | slice(0,50) ~ '...' : livre.resume }}</p>
-                        <a href="{#{{ path('add_item', {'id': livre.id}) }}#}" class="col-12 btn btn-warning text-center"><i class="fa-solid fa-cart-plus"></i></a>
+                        <a href="{{ path('validate_emprunt', {'id': livre.id}) }}" class="col-12 btn btn-warning text-center" onclick="return confirm('Voulez-vous vraiment emprunter ce livre ?\n Si oui, vous ne pourrez pas en emprunter un autre.')"><i class="fa-solid fa-cart-plus"></i></a>
                     </div>
                 </div>
             </div>
