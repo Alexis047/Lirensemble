@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../Lirensemble-test"
+		},
+		{
+			"path": "../Dossier_Doranco/Cours/12-Symfony/semaine-2/My-eshop"
+		},
+		{
+			"path": "../Dossier_Doranco/Cours/12-Symfony/semaine-3/Newspaper"
+		}
+	],
+	"settings": {}
+}
