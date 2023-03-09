@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Bienvenue sur Lirensemble</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+        h1 {
+            background-color: #264459;
+            color: #ffffff;
+            padding: 30px 0 50px 0;
+            font-weight: normal;
+        }
+        hr {
+            border: none;
+            border-top: 3px solid #264459;
+            margin: 20px;
+        }
+        .container {
+            background-color: #fefefe;
+            width: 580px;
+            margin: 0 auto;
+        }
+        .bottom {
+            background-color: #efefee;
+        }
+        .block {
+            margin: 0;
+            padding: 10px 20px 20px 20px;
+        }
+        .logo {
+            width: 100%;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #264459;
+            color: #fefefe;
+            border: 1px solid #fff;
+            border-radius: 3px;
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<div class="body">
+    <div class="container">
+        <div class="header text-center">
+            <a href="{{ url('default_home')}}">
+                <img src="{{absolute_url(asset('build/img/logo.png'))}}" class="logo" alt="SpaceBar Logo">
+            </a>
+        </div>
+        <div class="content">
+            <h1 class="text-center">Enchanté {{ 'pseudo' }}!</h1>
+            <p class="block">
+                Bienvenue sur <strong>Lirensemble</strong>, tu as hâte de partager tes goûts littéraire ? Nous aussi ! Poursuis ton exploration et découvre comment prêter/emprunter ton premier livre.
+            </p>
+            <p class="block text-center">
+                <a href="{{url('show_profile')}}" class="btn">Prête ton premier bouquin!</a>
+            </p>
+            <p class="block">
+                En effet pas de lecteurs sans livres, si tu veux emprunter un livre il te faudra en prêter un de ta propre collection, ça sera l'occasion de parler de ta pépite.
+            </p>
+            <p class="block text-center">
+                <a href="{{ url('default_home')}}" class="btn">Plus qu'à lire!</a>
+            </p>
+            <p class="block">
+                Une fois que ça sera fait tu pourras emprunter le livre de ton choix parmi tes critères de recherche ! On te laisse parcourir le site et nous sommes très heureux de te compter parmi nos inscrits.
+            </p>
+        </div>
+        <div class="footer">
+            <p class="block">
+                Cordialement, <em>l'équipe Lirensemble.</em>
+            </p>
+            <p class="block bottom text-center">
+                Envoyé par Lirensemble
+            </p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
