@@ -5,13 +5,14 @@ namespace App\Controller;
 use \DateTime;
 use App\Entity\Contact;
 use App\Form\ContactFormType;
+use Symfony\Component\Mime\Email;
+use Symfony\Component\Mime\Address;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
 
 class ContactController extends AbstractController
 {
@@ -37,15 +38,11 @@ class ContactController extends AbstractController
 
             //Email
             $email = (new Email())
-            ->from('hello@example.com')
-            ->to('you@example.com')
-            //->cc('cc@example.com')
-            //->bcc('bcc@example.com')
-            //->replyTo('fabien@example.com')
-            //->priority(Email::PRIORITY_HIGH)
-            ->subject('Time for Symfony Mailer!')
-            ->text('Sending emails is fun again!')
-            ->html('<p>See Twig integration for better HTML integration!</p>');
+            ->from(new Address($contact->getEmail(), $contact->getPrenom()))
+            ->to(new Address('alexis@lirensemble.com', 'Lirensemble'))
+            ->subject($contact->getSujet())
+            ->text($contact->getMessage())
+            ->html('<p>' . $contact->getMessage() . '</p>');
 
             $mailer->send($email);
 

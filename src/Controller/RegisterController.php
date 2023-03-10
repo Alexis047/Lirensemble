@@ -7,11 +7,13 @@ use App\Entity\User;
 use App\Form\RegisterFormType;
 use Symfony\Component\Mime\Email;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class RegisterController extends AbstractController
@@ -42,14 +44,14 @@ class RegisterController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $email = (new Email())
-                ->from('alienmailcarrier@example.com')
-                ->to($user->getEmail())
+            $email = (new TemplatedEmail())
+                ->from(new Address('alexis@lirensemble.com', 'Lirensemble'))
+                ->to(new Address($user->getEmail(), $user->getPrenom()))
                 ->subject('Bienvenue sur Lirensemble')
-                ->text("Enchanté {$user->getPrenom()} !")
-                ->html($this->render('email/welcome.html.twig', [
-                    'pseudo' => $user->getPseudo()
-                ]));
+                ->htmlTemplate('email/welcome.html.twig')
+                ->context([
+                    // 'user' => $user
+                ]);
 
             $mailer->send($email);
 
