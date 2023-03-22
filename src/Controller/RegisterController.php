@@ -5,7 +5,6 @@ namespace App\Controller;
 use DateTime;
 use App\Entity\User;
 use App\Form\RegisterFormType;
-use Symfony\Component\Mime\Email;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
