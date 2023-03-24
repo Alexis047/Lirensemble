@@ -119,11 +119,14 @@
 										</a>
 									</td>
 								</tr>
-
 							{% else %}
-								<h3 class="text-center">Aucun emprunt en cours</h3>
+								<tr>
+									<td colspan="11" class="bg-warning text-center">Aucun emprunt en cours</td>
+								</tr>
 							{% endfor %}
 						</tbody>
-					</div>
+					</table>
+				</div>
+			</div>
 
-				{% endblock %}
+{% endblock %}
