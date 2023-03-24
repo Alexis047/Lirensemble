@@ -42,6 +42,9 @@ class Livres
     #[ORM\OneToOne(mappedBy: 'livre', cascade: ['persist', 'remove'])]
     private ?Emprunt $emprunt = null;
 
+    #[ORM\Column]
+    private ?bool $enPret = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -156,6 +159,18 @@ class Livres
         }
 
         $this->emprunt = $emprunt;
+
+        return $this;
+    }
+
+    public function isEnPret(): ?bool
+    {
+        return $this->enPret;
+    }
+
+    public function setEnPret(bool $enPret): self
+    {
+        $this->enPret = $enPret;
 
         return $this;
     }

@@ -30,20 +30,19 @@ class EmpruntController extends AbstractController
         $user = $this->getUser();
         $monEmprunt = $entityManager->getRepository(Emprunt::class)->findBy(array('emprunteur' => $user, 'deletedAt' => null));
 
-        // dd($user);
-
         if ($user === null) {
             $this->addFlash('error', 'Inscrivez-vous pour pouvoir emprunter un livre');
             return $this->redirectToRoute('user_register');
         }
         elseif (empty($monEmprunt)) {
+            $livres->setEnPret(true);
             $emprunt = new Emprunt();
             $emprunt->setEmprunteur($user);
             $emprunt->setLivre($livres);
             $emprunt->setCreatedAt(new DateTime());
             $emprunt->setUpdatedAt(new DateTime());
 
-            $entityManager->persist($emprunt);
+            $entityManager->persist($emprunt, $livres);
             $entityManager->flush();
 
             $this->addFlash('success', 'Vous avez emprunté ce livre');

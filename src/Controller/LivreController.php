@@ -30,6 +30,7 @@ class LivreController extends AbstractController
             $livre->setCreatedAt(new Datetime());
             $livre->setUpdatedAt(new Datetime());
             $livre->setProprietaire($user);
+            $livre->setEnPret(false);
 
             $entityManager->persist($livre);
             $entityManager->flush();

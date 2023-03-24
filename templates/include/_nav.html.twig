@@ -22,11 +22,14 @@
                         <a class="nav-link navbar-text" href="{{ path('show_profile') }}">Mon profil</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link navbar-text" href="{{ path('show_emprunt') }}">Mon emprunt</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link navbar-text" href="{{ path('app_logout') }}">Déconnexion</a>
                     </li>
                 {% endif %}
 
-{# Pour vérifier le rôle d'un user, vous DEVEZ utiliser la fonction Twig is_granted() #}
+
                 {% if is_granted('ROLE_ADMIN') %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle navbar-text" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -42,9 +45,7 @@
                 {% endif %}
             </ul>
 
-            <div class="me-5">
-                <a class="btn btn-warning" href="{{ path('show_emprunt') }}"><i class="fa fa-cart-arrow-down"></i> Panier</a>
-            </div>
+            
         </div>
     </div>
 </nav>

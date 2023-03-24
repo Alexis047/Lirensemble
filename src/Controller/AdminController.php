@@ -5,8 +5,10 @@ namespace App\Controller;
 use DateTime;
 use App\Entity\User;
 use App\Entity\Livres;
-use App\Repository\LivresRepository;
+use App\Entity\Emprunt;
 use App\Repository\UserRepository;
+use App\Repository\LivresRepository;
+use App\Repository\EmpruntRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -129,4 +131,23 @@ class AdminController extends AbstractController
         $this->addFlash('success', "Le membre a bien été supprimé definitivement du système !");
         return $this->redirectToRoute('show_ban');
     } // end function hardDeleteMembre()
+
+    #[Route('/liste-des-emprunts', name: 'show_emprunts', methods: ['GET'])]
+    public function showEmprunts(EntityManagerInterface $entityManager): Response
+    {
+        $emprunts = $entityManager->getRepository(Emprunt::class)->findby(['deletedAt' => null]);
+
+        return $this->render('admin/emprunt/show_emprunts.html.twig', [
+            'emprunts' => $emprunts
+        ]);
+    } // end function showEmprunts()
+
+    #[Route('/annuler-un-emprunt/{id}', name: 'cancel_emprunt', methods: ['GET'])]
+    public function cancelEmprunt(Emprunt $emprunt, EmpruntRepository $repository): RedirectResponse
+    {
+        $repository->remove($emprunt, true);
+
+        $this->addFlash('success', "L'emprunt à bien été annulé' !");
+        return $this->redirectToRoute('show_emprunts');
+    } // end function hardDeleteemprunt()
 }

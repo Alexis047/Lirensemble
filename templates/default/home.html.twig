@@ -14,12 +14,12 @@
 
             <div class="col-3 mx-2">
                 <div class="card" style="width: 18rem;">
-                    <img src="{{ asset('img/photo-standard.jpg') }}" class="card-img-top" alt="présentation" style="object-fit: contain;" width="150" height="220">
+                    <img src="{{ asset('img/photo-standard.jpg') }}" class="card-img-top" alt="présentation" style="object-fit: cover;" width="150" height="220">
                     <div class="card-body">
                         <h5 class="card-title">{{ livre.titre }}</h5>
                         <h6 class="card-title">{{ livre.genre }} | {{ livre.auteur }}</h6>
                         <p class="card-text">{{ livre.resume | length > 50 ? livre.resume | slice(0,50) ~ '...' : livre.resume }}</p>
-                        <a href="{{ path('validate_emprunt', {'id': livre.id}) }}" class="col-12 btn btn-warning text-center" onclick="return confirm('Voulez-vous vraiment emprunter ce livre ?\n Si oui, vous ne pourrez pas en emprunter un autre.')"><i class="fa-solid fa-cart-plus"></i></a>
+                        <a href="{{ path('validate_emprunt', {'id': livre.id}) }}" class="col-12 btn btn-warning text-center" onclick="return confirm('Voulez-vous vraiment emprunter ce livre ?\n Si oui, vous ne pourrez pas en emprunter un autre.')">Emprunter</a>
                     </div>
                 </div>
             </div>

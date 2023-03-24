@@ -13,7 +13,8 @@ class DefaultController extends AbstractController
     #[Route('/', name: 'default_home', methods: ['GET'])]
     public function home(EntityManagerInterface $entityManager): Response
     {
-        $livres = $entityManager->getRepository(Livres::class)->findBy(['deletedAt' => null]);
+        $livres = $entityManager->getRepository(Livres::class)
+        ->findBy(array('enPret' => false, 'deletedAt' => null));
 
         return $this->render('default/home.html.twig', [
             "livres" => $livres
