@@ -12,18 +12,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class EmpruntController extends AbstractController
 {
-    #[Route('/voir-mon-emprunt', name: 'show_emprunt', methods:['GET'])]
-    public function showEmprunt(EntityManagerInterface $entityManager): Response
-    {
-        $user = $this->getUser();
-        $monEmprunt = $entityManager->getRepository(Emprunt::class)->findBy(array('emprunteur' => $user, 'deletedAt' => null));
-
-        return $this->render('emprunt/show_emprunt.html.twig', [
-            "monEmprunt" => $monEmprunt,
-            
-        ]);
-    }
-
     #[Route('/valider-mon-emprunt/{id}', name: 'validate_emprunt', methods:['GET'])]
     public function validateEmprunt(EntityManagerInterface $entityManager, Livres $livres): Response
     {
@@ -42,7 +30,7 @@ class EmpruntController extends AbstractController
             $emprunt->setCreatedAt(new DateTime());
             $emprunt->setUpdatedAt(new DateTime());
 
-            $entityManager->persist($emprunt, $livres);
+            $entityManager->persist($emprunt, );
             $entityManager->flush();
 
             $this->addFlash('success', 'Vous avez emprunté ce livre');

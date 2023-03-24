@@ -149,5 +149,5 @@ class AdminController extends AbstractController
 
         $this->addFlash('success', "L'emprunt à bien été annulé' !");
         return $this->redirectToRoute('show_emprunts');
-    } // end function hardDeleteemprunt()
+    } // end function cancelEmprunt()
 }

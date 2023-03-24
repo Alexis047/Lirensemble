@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon profil{% endblock %}
+{% block title %}Mon profil
+{% endblock %}
 
 {% block body %}
 
@@ -9,80 +10,120 @@
 	{% include "include/_flashes.html.twig" %}
 
 	<div class="tab-content" id="pills-tabContent">
-				<div class="tab-pane fade show active mb-3" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+		<div class="tab-pane fade show active mb-3" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 
-					<div class="card text-center">
-						<div class="card-header">
-							Mes informations de compte
+			<div class="card text-center">
+				<div class="card-header">
+					Mes informations de compte
+				</div>
+				<div class="card-body">
+					<h5 class="card-title">{{ app.user.prenom }}
+						{{ app.user.nom }}</h5>
+					<p class="card-text">Pseudo :
+						{{ app.user.pseudo }}</p>
+					<p class="card-text">Email :
+						{{ app.user.email }}</p>
+					<p class="card-text">Adresse :
+						{{ app.user.adresse }}</p>
+					<p class="card-text">Ville :
+						{{ app.user.ville }}</p>
+					<p class="card-text">Code Postal :
+						{{ app.user.cp }}</p>
+					<div class="row">
+						<div class="col-6">
+							<a href="{{ path('update_infos', {'id': app.user.id}) }}" class="btn btn-warning text-white">Modifier mes informations</a>
 						</div>
-						<div class="card-body">
-							<h5 class="card-title">{{ app.user.prenom }}
-								{{ app.user.nom }}</h5>
-							<p class="card-text">Pseudo :
-								{{ app.user.pseudo }}</p>
-							<p class="card-text">Email :
-								{{ app.user.email }}</p>
-							<p class="card-text">Adresse :
-								{{ app.user.adresse }}</p>
-							<p class="card-text">Ville :
-								{{ app.user.ville }}</p>
-							<p class="card-text">Code Postal :
-								{{ app.user.cp }}</p>
-							<div class="row">
-								<div class="col-6">
-									<a href="{{ path('update_infos', {'id': app.user.id}) }}" class="btn btn-warning text-white">Modifier mes informations</a>
-								</div>
-								<div class="col-6">
-									<a href="#" class="btn btn-warning text-danger">Changer mon mot de passe</a>
-								</div>
-							</div>
+						<div class="col-6">
+							<a href="#" class="btn btn-warning text-danger">Changer mon mot de passe</a>
 						</div>
 					</div>
-
 				</div>
+			</div>
 
-	<div class="row">
-		<div class="col-11 mx-auto">
-			<table class="table table-hover">
-				<thead class="table-dark">
-					<tr>
-						<th>Titre</th>
-						<th>Auteur</th>
-						<th>Genre</th>
-						<th>Résumé</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for mesLivre in mesLivres %}
-						<tr>
-							<td>{{ mesLivre.titre }}</td>
-							<td>{{ mesLivre.auteur }}</td>
-							<td>{{ mesLivre.genre }}</td>
-							<td>{{ mesLivre.resume }}</td>
-							<td>
-								<a href="{{ path('update_livre', {'id': mesLivre.id}) }}" title="Modifier le livre" class="text-center align-middle text-warning">
-									<i class="fa-solid fa-edit"></i>
-								</a>
-								<a href="{{ path('hard_delete_livre', {'id': mesLivre.id}) }}" title="Retirer le livre" class="text-center align-middle text-danger" onclick="return confirm('Voulez-vous retirer ce livre ?\n Si oui, il sera définitivement supprimé.')">
-									<i class="fa-solid fa-trash"></i>
-								</a>
-							</td>
-						</tr>
-					{% else %}
-						<tr>
-							<td colspan="11" class="bg-warning text-center">Aucun livre en prêt</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
 		</div>
-	</div>
 
-	<div class="row">
-		<div class="col-6 mx-auto">
-			<a href="{{ path('add_livre') }}" class="d-block mx-auto col-4 btn btn-primary col-4">Ajouter un livre à ma liste de prêt <i class="fa fa-plus-circle"></i></a>
+		<h2 class="text-center my-3">Ma liste de prêt</h2>
+
+		<div class="row">
+			<div class="col-11 mx-auto">
+				<table class="table table-hover">
+					<thead class="table-dark">
+						<tr>
+							<th>Titre</th>
+							<th>Auteur</th>
+							<th>Genre</th>
+							<th>Résumé</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for mesLivre in mesLivres %}
+							<tr>
+								<td>{{ mesLivre.titre }}</td>
+								<td>{{ mesLivre.auteur }}</td>
+								<td>{{ mesLivre.genre }}</td>
+								<td>{{ mesLivre.resume }}</td>
+								<td>
+									<a href="{{ path('update_livre', {'id': mesLivre.id}) }}" title="Modifier le livre" class="text-center align-middle text-warning">
+										<i class="fa-solid fa-edit"></i>
+									</a>
+									<a href="{{ path('hard_delete_livre', {'id': mesLivre.id}) }}" title="Retirer le livre" class="text-center align-middle text-danger" onclick="return confirm('Voulez-vous retirer ce livre ?\n Si oui, il sera définitivement supprimé.')">
+										<i class="fa-solid fa-trash"></i>
+									</a>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="11" class="bg-warning text-center">Aucun livre en prêt</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
 		</div>
-	</div>
 
-{% endblock %}
+		<div class="row">
+			<div class="col-6 mx-auto">
+				<a href="{{ path('add_livre') }}" class="d-block mx-auto col-4 btn btn-primary col-4">Ajouter un livre à ma liste de prêt
+					<i class="fa fa-plus-circle"></i>
+				</a>
+			</div>
+		</div>
+
+		<h2 class="text-center my-3">Gérer mon emprunt</h2>
+
+		<div class="row mb-3 d-flex justify-content-around">
+
+			<div class="row">
+				<div class="col-11 mx-auto">
+					<table class="table table-hover">
+						<thead class="table-dark">
+							<tr>
+								<th>Titre</th>
+								<th>Pseudo de l'emprunteur</th>
+								<th>Emprunté le</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							{%  for monEmprunt in monEmprunt %}
+
+								<tr>
+									<td>{{ monEmprunt.livre.titre }}</td>
+									<td>{{ monEmprunt.emprunteur.pseudo }}</td>
+									<td>{{ monEmprunt.createdAt | date('d/m/Y') }}</td>
+									<td>
+										<a href="{{ path('cancel_emprunt', {'id': monEmprunt.id}) }}" title="Annuler mon emprunt" class="text-center align-middle text-danger" onclick="return confirm('Voulez-vous vraiment annuler cet emprunt ?')">
+											<i class="fa-solid fa-trash"></i>
+										</a>
+									</td>
+								</tr>
+
+							{% else %}
+								<h3 class="text-center">Aucun emprunt en cours</h3>
+							{% endfor %}
+						</tbody>
+					</div>
+
+				{% endblock %}
