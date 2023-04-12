@@ -4,11 +4,52 @@
 
 {% block body %}
 
-    <h1 class="text-center my-4">Bienvenue sur votre bibliothèque en ligne</h1>
+    <div class="slider">
+        <div class="elements">
+            <div class="element">
+                <img src="{{ asset('img/slide01.jpg') }}" alt="lights">
+                <div class="caption">
+                    <h1>Bienvenue sur votre bibliothèque en ligne</h1>
+                </div>
+            </div>
+            <div class="element">
+                <img src="{{ asset('img/slide02.jpg') }}" alt="cup">
+                <div class="caption">
+                    <h1>Vous êtes nouveau ?</h1>
+                    <p>Suivez les instructions qui suivent ci-dessous</p>
+                </div>
+            </div>
+            <div class="element">
+                <img src="{{ asset('img/slide03.jpg') }}" alt="blur">
+                <div class="caption">
+                    <h1>Bonne visite !</h1>
+                </div>
+            </div>
+        </div>
+        <i id="nav-gauche" class='bx bx-chevron-left-circle'></i>
+        <i id="nav-droite" class='bx bx-chevron-right-circle'></i>
+    </div>
 
     {% include "include/_flashes.html.twig" %}
 
-    <div class="row mb-3 d-flex justify-content-around">
+    <section id="intro">
+        <h2>Lirensemble, qu'est que c'est ?</h2>
+        <p>
+            Lirensemble est un site participatif d'emprunt de livres autour de chez vous. Le but est de se retrouver avec un large choix de livres prêtés par les utilisateurs eux mêmes pour construire ensemble une véritable bibliothèque en ligne gratuite. Venez partager votre passion de la littérature avec d'autres personnes sans frais et sans soucis.
+        </p>
+        <h2>Comment ça fonctionne ?</h2>
+        <p>
+            Pour commencer faisons connaissance, venez-vous inscrire <a href="{{ path('user_register') }}">ici</a>.
+        </p>
+        <p>
+            Une fois que c'est fait, il ne vous reste plus qu'à mettre un (ou plusieurs) livre de votre collection en prêt depuis votre <a {% if not app.user %} href="{{ path('app_login') }}" {% else %} href="{{ path('show_profile') }}" {% endif %}>profil</a>, rien de plus simple !
+        </p>
+        <p>
+            Vous pouvez maintenant parcourir les livres proposés et faire votre choix, mais un à la fois n'abusons pas des bonnes choses. Bonne visite et on espère que vous trouverez votre bonheur !
+        </p>
+    </section>
+
+    <div class="row mb-5 d-flex justify-content-start">
 
         {%  for livre in livres %}
 
