@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
@@ -44,52 +45,8 @@ class RegisterFormType extends AbstractType
                     ]),
                 ]
             ])
-            ->add('prenom', TextType::class, [
-                'label' => 'Prénom',
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Ce champ ne peut être vide'
-                    ])
-                ]
-            ])
-            ->add('nom', TextType::class, [
-                'label' => 'Nom',
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Ce champ ne peut être vide'
-                    ])
-                ]
-            ])
             ->add('pseudo', TextType::class, [
                 'label' => 'Pseudo',
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Ce champ ne peut être vide'
-                    ])
-                ]
-            ])
-            ->add('adresse', TextType::class, [
-                'label' => 'Adresse',
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Ce champ ne peut être vide'
-                    ])
-                ]
-            ])
-            ->add('cp', TextType::class, [
-                'label' => 'Code Postal',
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Ce champ ne peut être vide'
-                    ]),
-                    new Length([
-                        'min' => 5,
-                        'max' => 5,
-                    ])
-                ]
-            ])
-            ->add('ville', TextType::class, [
-                'label' => 'Ville',
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ ne peut être vide'
@@ -100,7 +57,7 @@ class RegisterFormType extends AbstractType
                 'label' => 'Valider',
                 'validate' => false,
                 'attr' => [
-                    'class' => 'd-block mx-auto btn btn-primary col-3'
+                    'class' => 'd-block mx-auto btn btn-primary col-3 my-2'
                 ]
             ])
         ;

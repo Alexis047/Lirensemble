@@ -45,7 +45,7 @@ class RegisterController extends AbstractController
 
             $email = (new TemplatedEmail())
                 ->from(new Address('alexis@lirensemble.com', 'Lirensemble'))
-                ->to(new Address($user->getEmail(), $user->getPrenom()))
+                ->to(new Address($user->getEmail(), $user->getPseudo()))
                 ->subject('Bienvenue sur Lirensemble')
                 ->htmlTemplate('email/welcome.html.twig')
                 ->context([

@@ -123,15 +123,6 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('show_ban');
     } // end function restoreMembre()
 
-    #[Route('/supprimer-un-membre/{id}', name: 'hard_delete_membre', methods: ['GET'])]
-    public function hardDeleteMembre(User $user, UserRepository $repository): RedirectResponse
-    {
-        $repository->remove($user, true);
-
-        $this->addFlash('success', "Le membre a bien été supprimé definitivement du système !");
-        return $this->redirectToRoute('show_ban');
-    } // end function hardDeleteMembre()
-
     #[Route('/liste-des-emprunts', name: 'show_emprunts', methods: ['GET'])]
     public function showEmprunts(EntityManagerInterface $entityManager): Response
     {

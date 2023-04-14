@@ -17,18 +17,10 @@
 					Mes informations de compte
 				</div>
 				<div class="card-body">
-					<h5 class="card-title">{{ app.user.prenom }}
-						{{ app.user.nom }}</h5>
-					<p class="card-text">Pseudo :
-						{{ app.user.pseudo }}</p>
+					<h5 class="card-title">Pseudo :
+						{{ app.user.pseudo }}</h5>
 					<p class="card-text">Email :
 						{{ app.user.email }}</p>
-					<p class="card-text">Adresse :
-						{{ app.user.adresse }}</p>
-					<p class="card-text">Ville :
-						{{ app.user.ville }}</p>
-					<p class="card-text">Code Postal :
-						{{ app.user.cp }}</p>
 					<div class="row">
 						<div class="col-6">
 							<a href="{{ path('update_infos', {'id': app.user.id}) }}" class="btn btn-warning text-white">Modifier mes informations</a>

@@ -7,7 +7,7 @@
   box-sizing: border-box;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Alata', sans-serif;
 }
 
@@ -16,6 +16,7 @@ p, a {
 }
 
 .navbar-custom {
+  height: 10vh;
   background-color: #3C7768;
 }
 
@@ -102,4 +103,15 @@ main {
 #intro a {
   text-decoration: none;
   color:#3C7768
+}
+
+main {
+  min-height: 61.7vh;
+}
+
+#footer {
+  height: 25vh;
+  position: relative;
+  bottom: 0;
+  width: 100%;
 }
