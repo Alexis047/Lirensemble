@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-	
-		
-			
 		<meta charset="UTF-8">
 		<meta name="description" content="Une bibliothèque en ligne gratuite pour tous!">
 		<title>
@@ -38,7 +35,7 @@
 
 		{% block javascripts %}
 		{{ encore_entry_script_tags('app') }}
-		<script src="../node_modules/tarteaucitron/tarteaucitron.js"></script>
+		{#<script src="../node_modules/tarteaucitron/tarteaucitron.js"></script>
 
         <script type="text/javascript">
         tarteaucitron.init({
@@ -87,7 +84,7 @@
 				tarteaucitron.user.gtagG = 'G-TCYTZXMFQE';
 				tarteaucitron.user.gtagMore = function () { /* add here your optional gtag() */ };
 				(tarteaucitron.job = tarteaucitron.job || []).push('gtag');
-        </script>
+        </script>#}
 				<!-- Google tag (gtag.js) -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-TCYTZXMFQE"></script>
 		<script>
