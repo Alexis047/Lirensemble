@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
+	
+		
+			
 		<meta charset="UTF-8">
 		<meta name="description" content="Une bibliothèque en ligne gratuite pour tous!">
 		<title>
@@ -35,12 +38,7 @@
 
 		{% block javascripts %}
 		{{ encore_entry_script_tags('app') }}
-
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-			<script src="{{asset('js/app.js')}}" defer></script>
-
-			<script src="/tarteaucitron/tarteaucitron.js"></script>
+		<script src="../node_modules/tarteaucitron/tarteaucitron.js"></script>
 
         <script type="text/javascript">
         tarteaucitron.init({
@@ -85,7 +83,26 @@
           "mandatory": true, /* Show a message about mandatory cookies */
           "mandatoryCta": true /* Show the disabled accept button when mandatory on */
         });
+
+				tarteaucitron.user.gtagG = 'G-TCYTZXMFQE';
+				tarteaucitron.user.gtagMore = function () { /* add here your optional gtag() */ };
+				(tarteaucitron.job = tarteaucitron.job || []).push('gtag');
         </script>
+				<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-TCYTZXMFQE"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'G-TCYTZXMFQE');
+		</script>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+			<script src="{{asset('js/app.js')}}" defer></script>
+
+			
 		{% endblock %}
 	</body>
 </html>
