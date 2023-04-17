@@ -26,10 +26,19 @@ class RegisterController extends AbstractController
 
         $user = new User();
 
+        $users = $entityManager->getRepository(User::class);
+
         $form = $this->createForm(RegisterFormType::class, $user)
             ->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+            foreach( $users as $userdb) {
+                if($userdb->getPseudo() === $user->getPseudo() || $userdb->getEmail() === $user->getEmail()) {
+                    $this->addFlash('error', 'Ce pseudo ou cet email appartient déjà à un lecteur');
+                    return $this->redirectToRoute('app_register');
+                }
+
+            }
             $user->setCreatedAt(new Datetime());
             $user->setUpdatedAt(new Datetime());
             $user->setRoles(['ROLE_USER']);
